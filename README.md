@@ -48,4 +48,4 @@ If you want to change how the hardware works, you can modify the KiCad files in 
 - Follow directions [here](https://www.youtube.com/watch?v=8WXpGTIbxlQ) to get the KiCad libraries installed. These will allow you to add a lot of things, and will make things nicer to edit in Kicad.
 - Edit the PCB to look however you want
 
-If you want to change how the software works, I have created a [simple lib](firmware/midimech1.py) to interact with the hardware in [CircuitPython](https://circuitpython.org/). See how I use it in [sequencer.py]([firmware/sequencer.py).
+If you want to change how the software works, I have created a [simple lib](firmware/midimech1.py) to interact with the hardware in [CircuitPython](https://circuitpython.org/). See how I use it in [sequencer.py](firmware/sequencer.py).
