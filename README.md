@@ -18,7 +18,7 @@ I am using some ideas from [here](https://www.youtube.com/watch?v=8WXpGTIbxlQ), 
 - pattern/song/track sequencer for sequencing notes
 - arpeggio sequencer
 
-<img src="composite.png" alt="composite image" align="center" />
+![composite image](composite.png)
 ![schematic](schematic.png)
 
 ## build/install
