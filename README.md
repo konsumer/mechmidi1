@@ -19,6 +19,8 @@ I am using some ideas from [here](https://www.youtube.com/watch?v=8WXpGTIbxlQ), 
 - arpeggio sequencer
 
 ![keyboard layout](keyboard-layout.png)
+![3D](3d.png)
+![schematic](schematic.png)
 
 ## build/install
 
