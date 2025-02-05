@@ -18,8 +18,7 @@ I am using some ideas from [here](https://www.youtube.com/watch?v=8WXpGTIbxlQ), 
 - pattern/song/track sequencer for sequencing notes
 - arpeggio sequencer
 
-![keyboard layout](keyboard-layout.png)
-![3D](3d.png)
+![keyboard layout](keyboard-layout.png) ![3D](3d.png)
 ![schematic](schematic.png)
 
 ## build/install
