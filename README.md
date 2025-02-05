@@ -18,8 +18,8 @@ I am using some ideas from [here](https://www.youtube.com/watch?v=8WXpGTIbxlQ), 
 - pattern/song/track sequencer for sequencing notes
 - arpeggio sequencer
 
-<img src="keyboard-layout.png" alt="keyboard layout" width="45%" />
-<img src="3d.png" alt="3D rendering" width="45%" />
+<img src="keyboard-layout.png" alt="keyboard layout" width="45%" align="left" />
+<img src="3d.png" alt="3D rendering" width="45%" align="right" />
 
 ![schematic](schematic.png)
 
