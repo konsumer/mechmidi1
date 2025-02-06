@@ -10,6 +10,8 @@ I am using some ideas from [here](https://www.youtube.com/watch?v=8WXpGTIbxlQ), 
 - 20 RGB LEDs
 - i2c port for adding more stuff onto it (for example I might make a dongle for bluetooth or USB midi/keyboard/mouse/gamepad host)
 - old-school MIDI in/out
+- I used pi 2040, but you can use any chip
+- designed to be easy to reflow-solder with a toaster oven
 - Fully programmable with [CircuitPython](https://circuitpython.org/)
 - Use [KMK](https://github.com/KMKfw/kmk_firmware) for a more keyboard-focused firmware (programmable keyboard firmware)
 - Use MIDI-focused firmware over USB, or with oldschool MIDI-out, that does sequencing
@@ -23,8 +25,11 @@ I am using some ideas from [here](https://www.youtube.com/watch?v=8WXpGTIbxlQ), 
 
 ## build/install
 
-- order PCB & parts. Feel free to use whatever cheaper parts you can find. It pays to look around, especially with the OLED and LED chips. The keys are also totally up to you, but I recommend something clear, so the light shines through better. In addition to the [BOM](mechmidi1-bom.csv) you will need keycaps (again, clear looks nice)
-- solder components on board
+- order PCB & parts. Feel free to use whatever cheaper parts you can find. It pays to look around, especially with the OLED and LED chips. The key-switches are also totally up to you, but I recommend something clear, so the light shines through better. In addition to the [BOM](mechmidi1-bom.csv) you will need keycaps (again, clear looks nice)
+- solder components on board. 2040 gets connected to `MCU` header. I included an extra header of `GND` and `5V` pins, so you can connect stuff without needing to splice the connection.
+- if you want oldschool MIDI, connect a board, like [this](https://www.amazon.com/ubld-itTM-Breakout-Board-Multi-Voltage/dp/B0BYMC926Z) to TX/RX on 2040 (see schematic)
+- if you want OLED screen, attach it to SDA/SCL on 2040 (see schematic)
+- if you want rotary encoders, connect to GPIO on 2040 (see schematic)
 - [install circuitpython](https://circuitpython.org/board/waveshare_rp2040_zero/) and any [libs](https://circuitpython.org/libraries) you need to RP2040 (I generally just start with a bundle)
 
 ### MIDI sequencer/conroller
