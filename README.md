@@ -1,5 +1,5 @@
 > [!IMPORTANT]  
-> This is still a work-in-progress. I don't think my custom-design is currently cost-effective, or layed-out quite how I want. I really like [this one](https://github.com/retrobuiltRyan/MacroKeyboardV2) that is kinda similar. I think I need to cut-down my PCB cost ([comparison](https://pcbshopper.com/) and [very cheap w/ assembly](https://jlcpcb.com/).) I also should maybe use a cheaper/more-plentiful LED chip, and do cutouts in the board so I can mount them on the back-side.
+> This is still a work-in-progress. I don't think my custom-design is currently cost-effective, or layed-out quite how I want. I really like [this one](https://github.com/retrobuiltRyan/MacroKeyboardV2) that is kinda similar. I think I need to cut-down my PCB cost ([comparison](https://pcbshopper.com/) and [very cheap w/ assembly](https://jlcpcb.com/).) With a cheaper board, the OLED, rotaries, and micro can be attached, which will be easier. I also should maybe use a cheaper/more-plentiful LED chip, and do cutouts in the board so I can mount them on the back-side.
 
 This is a [RP2040-Zero](https://www.aliexpress.us/item/3256807464011140.html) mechanical keyboard I designed to be a MIDI controller/sequencer and/or macro-keypad. It's made to be highly configurable & easy to modify.
 
