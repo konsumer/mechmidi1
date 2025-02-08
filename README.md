@@ -1,4 +1,4 @@
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > This is still a work-in-progress. I don't think my custom-design is currently cost-effective, or layed-out quite how I want. I really like [this one](https://github.com/retrobuiltRyan/MacroKeyboardV2) or [this one](https://core-electronics.com.au/projects/kipad-a-custom-macro-keypad-for-kicad/) that are kinda similar. I think I need to cut-down my PCB cost ([comparison](https://pcbshopper.com/) and [very cheap w/ assembly](https://jlcpcb.com/).) With a cheaper board, the OLED, rotaries, and micro can be attached, which will be easier. I also should maybe use a cheaper/more-plentiful LED chip, and do cutouts in the board so I can mount them on the back-side.
 
 This is a [RP2040-Zero](https://www.aliexpress.us/item/3256807464011140.html) mechanical keyboard I designed to be a MIDI controller/sequencer and/or macro-keypad. It's made to be highly configurable & easy to modify.
@@ -23,9 +23,6 @@ I am using some ideas from [here](https://www.youtube.com/watch?v=8WXpGTIbxlQ), 
 - pattern/song/track sequencer for sequencing notes
 - arpeggio sequencer
 
-![composite image](composite.png)
-![schematic](schematic.png)
-
 ## build/install
 
 - order PCB & parts. Feel free to use whatever cheaper parts you can find. It pays to look around, especially with the OLED and LED chips. The key-switches are also totally up to you, but I recommend something clear, so the light shines through better. In addition to the [BOM](mechmidi1-bom.csv) you will need keycaps (again, clear looks nice)
@@ -35,7 +32,7 @@ I am using some ideas from [here](https://www.youtube.com/watch?v=8WXpGTIbxlQ), 
 - if you want rotary encoders, connect to GPIO on 2040 (see schematic)
 - [install circuitpython](https://circuitpython.org/board/waveshare_rp2040_zero/) and any [libs](https://circuitpython.org/libraries) you need to RP2040 (I generally just start with a bundle)
 
-### MIDI sequencer/conroller
+### MIDI sequencer/controller
 
 - copy [midimech1.py](firmware/midimech1.py) to `lib/midimech1.py`
 - copy [sequencer.py](firmware/sequencer.py) to `app.py`

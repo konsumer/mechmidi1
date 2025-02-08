@@ -3,3 +3,5 @@
 *-cache
 .ropeproject
 ~*
+*.log
+*.zip
