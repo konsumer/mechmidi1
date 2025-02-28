@@ -43,6 +43,10 @@ At the top-left of board, there is an expansion port for MIDI/serial/i2c/power.
 
 Use this to hook up classic midi daughter-board, or any other i2c/serial thing you want.
 
+If you need to access these pins in code or want to expand the board, here is how they are hooked up to the RP2040-Zero:
+
+![pinout](https://github.com/user-attachments/assets/1ac1e74c-30ec-44e9-a9ca-535a7d699aae)
+
 
 ### MIDI sequencer/controller
 
