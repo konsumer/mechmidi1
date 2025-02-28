@@ -45,8 +45,7 @@ Use this to hook up classic midi daughter-board, or any other i2c/serial thing y
 
 If you need to access these pins in code or want to expand the board, here is how they are hooked up to the RP2040-Zero:
 
-![pinout](https://github.com/user-attachments/assets/1ac1e74c-30ec-44e9-a9ca-535a7d699aae)
-
+<img width="501" alt="pinout" src="https://github.com/user-attachments/assets/2e529333-528a-4be0-affe-972ee8f4bf52" />
 
 ### MIDI sequencer/controller
 
