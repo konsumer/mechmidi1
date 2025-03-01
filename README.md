@@ -28,10 +28,10 @@ I am using some ideas from [here](https://www.youtube.com/watch?v=8WXpGTIbxlQ), 
 - order PCB & parts. Feel free to use whatever cheaper parts you can find. It pays to look around, especially with the OLED and LED chips. The key-switches are also totally up to you, but I recommend something clear, so the light shines through better. You will also need keycaps (again, clear looks nice)
 - if you want to use easyeda & [jlcpcb](https://jlcpcb.com/) (it's very cheap & easy) you can disable any parts you don't need/want in BOM, and it will leave them out. For example, I didn't use the keys or 2040 they listed, I used my own (and it ended up better, I think.)
 - solder remaining components on board. [this](https://learn.sparkfun.com/tutorials/how-to-solder-castellated-mounting-holes/all) was helpful for the RP2040-Zero
-- if you want classic MIDI, connect a board, like [this](https://www.amazon.com/ubld-itTM-Breakout-Board-Multi-Voltage/dp/B0BYMC926Z) to "expansion port" on board. I did this as a seperate board because I had a MIDI breakout-board laying around and I wanted it all to fit on a very small main-board. Another trick is sometimes the MIDI ports are included with other features. For example [this](https://shop.m5stack.com/products/midi-unit-with-din-connector-sam2695) has MIDI DIN IN/OUT, as well as TRS ports, and has a full sound-engine built in (entire General Midi of 127 decent-sounding instruments.) Even if you don't want the sounds, the MIDI connection alone are useful, but with sounds, it makes the device even more useful.
-- [install circuitpython](https://circuitpython.org/board/waveshare_rp2040_zero/) and any [libs](https://circuitpython.org/libraries) you need to RP2040 (I generally just start with a bundle)
+- if you want classic MIDI, connect a board, like [this](https://www.amazon.com/ubld-itTM-Breakout-Board-Multi-Voltage/dp/B0BYMC926Z) to "expansion port" on board. I did this as a seperate board because I had a MIDI breakout-board laying around and I wanted it all to fit on a very small main-board. Another trick is sometimes the MIDI ports are included with other features on the board. For example [this](https://shop.m5stack.com/products/midi-unit-with-din-connector-sam2695) has MIDI DIN IN/OUT, as well as TRS MIDI ports, and has a full sound-engine built in (entire General Midi of 127 decent-sounding instruments.) Even if you don't want the sounds, the MIDI connections alone are useful, but with sounds, it makes the device even cooler!
+- [install circuitpython](https://circuitpython.org/board/waveshare_rp2040_zero/) and any [libs](https://circuitpython.org/libraries) you need to RP2040 (I generally just start with a bundle.) You can skip this if you want arduino or some other firmware, but circuitpython is recommended initially, to test things, easily.
 
-### expansion port
+### expansion & hardware
 
 At the top-left of board, there is an expansion port for MIDI/serial/i2c/power.
 
@@ -46,6 +46,13 @@ Use this to hook up classic midi daughter-board, or any other i2c/serial thing y
 If you need to access these pins in code or want to expand the board, here is how they are hooked up to the RP2040-Zero:
 
 <img width="621" alt="pinout" src="https://github.com/user-attachments/assets/d24afc06-6173-474e-ba84-84b27f598f73" />
+
+- `VCC` (3.3V) and `GND` are power. I did not expose `5V`, but I could add it to schematic, or you can just add a bodge-wire to chip-pin or one of the through-holes on board, if you need that. IO is best at `3.3V` for this chip, so I wanted to keep it all "easy to stay safe"
+- `LED` is a neopixel-line (has 20 RGB LEDs on it, but you can ad more)
+- `COL(X)`/`ROW(X)` are the keyboard-matrix
+- `ROT(X)A`/`ROT(X)B`/`ROT(X)S` are the rotary-encoders (`S` is the push-down switch)
+- `SDA`/`SCL` is i2c. You can add up to 127 devices to this bus (each has it's own address, and they share wires) but OLED takes up 1 slot
+- `RX`/`TX` is serial or classic MIDI (with a little circuit)
 
 ### MIDI sequencer/controller
 
