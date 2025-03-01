@@ -62,14 +62,22 @@ If you do it all my way, the per-unit cost is about $40, not including addons or
 - mech key switches - I used [these nice ones](https://www.amazon.com/gp/product/B0CDW74TX3), $20 for 45 (enough for 2 devices) but you can find these much cheaper.
 - keycaps - I used [these](https://www.amazon.com/gp/product/B0CQ2XD4WT). $12 for 20, or $31 for 100. XDA is less "scuplted" than Cherry, but either will work fine.
 
-To build 10, it's ~$260 (~$26 per unit):
+To build 10, it's about $260 ($26 per unit):
 
-- boards $160
-- keys $84
+- boards $160 - go cheaper by making your own, or printing/assembling more at a time. Assembly is not very expensive compared to the PCB, I have found, so it might be worth it to add $2 per-unit and save yourself some time/effort.
+- key switches $84 - you can definitely find these cheaper on aliexpress
 - [10 2040s](https://www.aliexpress.us/item/3256806922860079.html) $15
 - order some super-cheap keycaps that will work for you. clear is best, but white will work fine, too. If you are ok with lettering on them, you can reuse a super-cheap macropad-set.
 
 You could get this even cheaper with greater bulk-quantities, and shopping around, though.
+
+### ideas for cheaper
+
+- Use membrane-keys (silicone buttons over PCB traces) instead of mech-keys
+- drop LEDs, or use single-color
+- drop OLED
+- drop rotary-encoders
+- try to get all parts on single-side (for cheaper/easier-to-make-at-home PCB)
 
 
 ## software
