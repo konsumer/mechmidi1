@@ -47,7 +47,7 @@ If you need to access these pins in code or want to expand the board, here is ho
 
 <img width="621" alt="pinout" src="https://github.com/user-attachments/assets/d24afc06-6173-474e-ba84-84b27f598f73" />
 
-- `VCC` (3.3V) and `GND` are power. I did not expose `5V`, but I could add it to schematic, or you can just add a bodge-wire to chip-pin or one of the through-holes on board, if you need that. IO is best at `3.3V` for this chip, so I wanted to keep it all "easy to stay safe"
+- `VCC` (3.3V) and `GND` are power. I did not expose `5V`, but you could add it to expansion-port, or you can just add a bodge-wire to chip-pin or one of the through-holes on board, if you need that. IO is best at `3.3V` for this chip, so I wanted to keep it all "easy to stay safe"
 - `LED` is a neopixel-line (has 20 RGB LEDs on it, but you can ad more)
 - `COL(X)`/`ROW(X)` are the keyboard-matrix
 - `ROT(X)A`/`ROT(X)B`/`ROT(X)S` are the rotary-encoders (`S` is the push-down switch)
