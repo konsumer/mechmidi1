@@ -48,7 +48,7 @@ If you need to access these pins in code or want to expand the board, here is ho
 <img width="621" alt="pinout" src="https://github.com/user-attachments/assets/d24afc06-6173-474e-ba84-84b27f598f73" />
 
 - `VCC` (3.3V) and `GND` are power. I did not expose `5V`, but you could add it to expansion-port, or you can just add a bodge-wire to chip-pin or one of the through-holes on board, if you need that. IO is best at `3.3V` for this chip, so I wanted to keep it all "easy to stay safe"
-- `LED` is a neopixel-line (has 20 RGB LEDs on it, but you can ad more)
+- `LED` is a neopixel-line (has 20 RGB LEDs on it, but you can add many more.) Again, a bodge-wire will be needed to add mroe pixels to this line, but it's fairly easy to solder one on, if you need that.
 - `COL(X)`/`ROW(X)` are the keyboard-matrix
 - `ROT(X)A`/`ROT(X)B`/`ROT(X)S` are the rotary-encoders (`S` is the push-down switch)
 - `SDA`/`SCL` is i2c. You can add up to 127 devices to this bus (each has it's own address, and they share wires) but OLED takes up 1 slot
