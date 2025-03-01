@@ -2,21 +2,18 @@ This is a [RP2040-Zero](https://www.waveshare.com/rp2040-zero.htm) mechanical ke
 
 I am using some ideas from [here](https://www.youtube.com/watch?v=8WXpGTIbxlQ), and it needs testing (still in progress.)
 
-> [!IMPORTANT]
-> I eneded up recreating project in EasyEDA because it was easier with [jlcpcb](https://jlcpcb.com/), which is pretty cheap for making the PCB and assembly. Ordering 10, they cost me about $16 each, after shipping, even during supply-chain shortages, but I provided my own midi-out, keys & 2040. This means the kicad stuff is not totally up-to-date, but I left it, if anyone is interested.
-
 ## Features
 
-- 20-key keypad with Cherry MX switches
+- 20-key keypad with MX-style switches
 - OLED 128x64 display
 - 2 rotary encoders (each with a button)
 - 20 RGB LEDs
-- i2c port for adding more stuff onto it (for example I might make a dongle for bluetooth or USB midi/keyboard/mouse/gamepad host)
+- i2c port for adding more stuff (for example I might make a dongle for bluetooth or USB midi/keyboard/mouse/gamepad host)
 - old-school MIDI in/out
-- I used pi 2040, but you can use any chip
-- designed to be easy to reflow-solder with a toaster oven
+- I used pi 2040, but you can use any chip, with a little modification
+- designed to be easy to reflow-solder with a toaster oven, if you are manufacturing/assembling yourself
 - Fully programmable with [CircuitPython](https://circuitpython.org/)
-- Use [KMK](https://github.com/KMKfw/kmk_firmware) for a more keyboard-focused firmware (programmable keyboard firmware)
+- Use [KMK](https://github.com/KMKfw/kmk_firmware) for a more keyboard-focused python-programmable firmware
 - Use MIDI-focused firmware over USB, or with oldschool MIDI-out, that does sequencing
 - translate USB MIDI to oldschool MIDI (no USB host, but it can interact with computer)
 - pattern/song/track sequencer for sequencing drums
@@ -54,6 +51,30 @@ If you need to access these pins in code or want to expand the board, here is ho
 - `SDA`/`SCL` is i2c. You can add up to 127 devices to this bus (each has it's own address, and they share wires) but OLED takes up 1 slot
 - `RX`/`TX` is serial or classic MIDI (with a little circuit)
 
+### cost
+
+You can definitely find these cheaper, if you look around. Although it's cheaper than any nice MIDI controller/sequencer/synth I found, that did what I want, super-cheap was not really a goal for me, with this project. It could be done differently, and much cheaper, I just wanted everything to work just like this, and be pretty quick/easy to assemble (it's a gift for a young-person, with not too much soldering experience.)
+
+If you do it all my way, the per-unit cost is about $40, not including addons or whatever. A [nice midi & sound addon](https://shop.m5stack.com/products/midi-unit-with-din-connector-sam2695) is another $15.
+
+- board with assembly - a bit cheaper in bulk, with assembly. I ordered 10, at $16 each (including shipping) and it has most of the parts on the board (no RP2040 or keys.) In much larger quantites, the price goes way down, and you can shop around for cheapest board (I went with easiest.) I can sell you a pre-populated board for $16 (not including shipping to you) until I run out. I currently have 5 of these on-hand. You can also get the price down by etching/assembling yourself, and just ordering parts (in bulk) but some of the parts are a bit tricky to solder by hand (a toaster would work better for the LEDs and diodes.) $16 seems pretty cheap to me, and the hardest soldering is done, and it's mostly all built, but some nice & fun soldering is left.
+- RP2040-Zero - I bought [3 for $20](https://www.amazon.com/gp/product/B0BZ8D4CJM/?th) and got it the next day, but they are definitely way cheaper elsewhere (check aliexpress/etc) if you are willing to wait for shipping, especially if you are buying them in bulk (they are very useful for all kinds of things.)
+- mech key switches - I used [these nice ones](https://www.amazon.com/gp/product/B0CDW74TX3), $20 for 45 (enough for 2 devices) but you can find these much cheaper.
+- keycaps - I used [these](https://www.amazon.com/gp/product/B0CQ2XD4WT). $12 for 20, or $31 for 100. XDA is less "scuplted" than Cherry, but either will work fine.
+
+To build 10, it's ~$260 (~$26 per unit):
+
+- boards $160
+- keys $84
+- [10 2040s](https://www.aliexpress.us/item/3256806922860079.html) $15
+- order some super-cheap keycaps that will work for you. clear is best, but white will work fine, too. If you are ok with lettering on them, you can reuse a super-cheap macropad-set.
+
+You could get this even cheaper with greater bulk-quantities, and shopping around, though.
+
+
+## software
+
+
 ### MIDI sequencer/controller
 
 - copy [midimech1.py](firmware/midimech1.py) to `lib/midimech1.py`
@@ -74,6 +95,9 @@ This thing is meant to be hacked!
 
 - Install [EasyEDA](https://easyeda.com/)
 - move things in schematice however you want, or add/remove anyhting you like. Make sure to update PCB (alt-I.) The 2040 is maxed-out for GPIO, but the layout should be simple enough to modify (unroute all, then do your business with nets like `COL0`, `ROW0`, etc, then auto-route.) I recommend replacing the chip wityh somerthing bigger if you want to do ther stuff (see [picoadk](https://www.tindie.com/products/datanoisetv/picoadk-audio-development-kit-raspberry-rp2040/) for a nice 2040 firmware for larger pico, with sound-generatin in mind!)
+
+> [!NOTE]
+> I ended up recreating/improving project in EasyEDA because it was easier with [jlcpcb](https://jlcpcb.com/), which is pretty cheap for making the PCB and assembly. This means the [kicad stuff](kicad) is not totally up-to-date, but I left it, if anyone is interested. It should still work, but it's not tested, and it's layed-out a bit differently.
 
 ### software
 
