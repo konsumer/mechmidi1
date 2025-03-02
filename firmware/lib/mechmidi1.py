@@ -23,8 +23,9 @@ ROT1B=board.GP12
 
 LED=board.GP8
 
-TX=board.GP0
-RX=board.GP1
+TX=board.TX
+RX=board.RX
 
 SDA=board.GP2
 SCL=board.GP3
+

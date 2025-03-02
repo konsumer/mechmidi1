@@ -4,12 +4,33 @@ import busio
 from digitalio import Direction, DigitalInOut, Pull
 from rotaryio import IncrementalEncoder
 from keypad import KeyMatrix
-
 import neopixel
-import adafruit_ssd1306
+import displayio
+import terminalio
+from adafruit_display_text import label
+from i2cdisplaybus import I2CDisplayBus
 
-# this just has pin definitions
+import adafruit_displayio_ssd1306
+
 from mechmidi1 import ROT0S,ROT0A,ROT0B,ROT1S,ROT1A,ROT1B,SDA,SCL,LED,ROW1,ROW2,ROW3,ROW4,ROW5,COL1,COL2,COL3,COL4
+
+# setup i2c and OLED
+displayio.release_displays()
+i2c = busio.I2C(SCL, SDA, frequency=1_000_000)
+display = adafruit_displayio_ssd1306.SSD1306(I2CDisplayBus(i2c, device_address=0x3C), width=128, height=64, rotation=180)
+
+screen = displayio.Group()
+display.root_group = screen
+
+with open("logo.bmp", "rb") as logo_file:
+    logo_bmp = displayio.OnDiskBitmap(logo_file)
+    logo = displayio.TileGrid(
+        logo_bmp,
+        pixel_shader = getattr(logo_bmp, 'pixel_shader', displayio.ColorConverter()),
+        x=25
+    )
+    screen.append(logo)
+    display.refresh()
 
 # setup RGB LEDs
 pixels = neopixel.NeoPixel(
@@ -19,11 +40,6 @@ pixels = neopixel.NeoPixel(
     auto_write=False,
     pixel_order=neopixel.GRB
 )
-
-# setup i2c and OLED
-i2c = busio.I2C(SCL, SDA, frequency=1_000_000)
-display = adafruit_ssd1306.SSD1306_I2C(128, 64, i2c)
-display.rotation=2
 
 # setup rotary-encoders
 rot = [
@@ -41,25 +57,19 @@ rotb[0].pull=Pull.UP
 rotb[1].direction=Direction.INPUT
 rotb[1].pull=Pull.UP
 
-
 # setup keypad
 keys = KeyMatrix(row_pins=(ROW1,ROW2,ROW3,ROW4,ROW5), column_pins=(COL1,COL2,COL3,COL4))
 
 
-# scan bus
-i2c.try_lock()
-print("i2c bus: ", end="")
-print(i2c.scan())
-i2c.unlock()
+# wait & hide logo
+sleep(1)
+logo.hidden = True
 
-display.fill(0)
-display.show()
-display.text("This will test", 0, 0, 1)
-display.text("various things.", 0, 10, 1)
-display.text("first: LEDs.", 0, 20, 1)
-display.text("You should", 0, 30, 1)
-display.text("see R/G/B.", 0, 40, 1)
-display.show()
+text_area = label.Label(terminalio.FONT, text="Hello.\nI'm going to run\nthrough some tests.", color=0xffffff, x=0, y=5)
+screen.append(text_area)
+sleep(2)
+text_area.text = "TEST: RGB"
+
 colors = (
     (255, 0, 0),   # red
     (0, 255, 0),   # green
@@ -73,32 +83,8 @@ pixels.fill(0)
 pixels.show()
 pixels.fill(0)
 
-display.fill(0)
-display.text("Now: rotaries.", 0, 0, 1)
-display.text("turn knobs", 0, 10, 1)
-display.text("or press both to move on.", 0, 20, 1)
-display.show()
-
 while True:
-    # TODO: just fill_rect(x,y,w,h,c)
-    display.fill(0)
-    display.text("Now: rotaries.", 0, 0, 1)
-    display.text("turn knobs", 0, 10, 1)
-    display.text("press both to end", 0, 20, 1)
-    display.text(f"R0: {rot[0].position} {not rotb[0].value}   ", 0, 30, 1)
-    display.text(f"R1: {rot[1].position} {not rotb[1].value}   ", 0, 40, 1)
-    display.show()
-    if not rotb[0].value and not rotb[1].value:
-        break
-    sleep(0.1)
-
-display.fill(0)
-display.text("Now: keypad.", 0, 0, 1)
-display.text("press keys", 0, 10, 1)
-display.text("see colors", 0, 20, 1)
-display.show()
-
-while True:
+    text_area.text = f"TEST: INPUT\nrot0: {rot[0].position} {not rotb[0].value}\nrot1: {rot[1].position} {not rotb[1].value}"
     e = keys.events.get()
     if e:
         if e.pressed:
@@ -106,3 +92,4 @@ while True:
         else:
             pixels[e.key_number] = colors[1]
         pixels.show()
+
