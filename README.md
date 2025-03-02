@@ -26,7 +26,8 @@ I am using some ideas from [here](https://www.youtube.com/watch?v=8WXpGTIbxlQ), 
 - if you want to use easyeda & [jlcpcb](https://jlcpcb.com/) (it's very cheap & easy) you can disable any parts you don't need/want in BOM, and it will leave them out. For example, I didn't use the keys or 2040 they listed, I used my own (and it ended up better, I think.)
 - solder remaining components on board. [this](https://learn.sparkfun.com/tutorials/how-to-solder-castellated-mounting-holes/all) was helpful for the RP2040-Zero. Flux really helps, and a cheap USB microscope, if you have one. Basically, I fluxed it up, put a pointy tipped iron in slot, then added a lil solder, for each pin.
 - if you want classic MIDI, connect a board, like [this](https://www.amazon.com/ubld-itTM-Breakout-Board-Multi-Voltage/dp/B0BYMC926Z) to "expansion port" on board. I did this as a seperate board because I had a MIDI breakout-board laying around and I wanted it all to fit on a very small main-board. Another trick is sometimes the MIDI ports are included with other features on the board. For example [this](https://shop.m5stack.com/products/midi-unit-with-din-connector-sam2695) has MIDI DIN IN/OUT, as well as TRS MIDI ports, and has a full sound-engine built in (entire General Midi of 127 decent-sounding instruments.) Even if you don't want the sounds, the MIDI connections alone are useful, but with sounds, it makes the device even cooler!
-- [install circuitpython](https://circuitpython.org/board/waveshare_rp2040_zero/) and any [libs](https://circuitpython.org/libraries) you need to "circuitpython" disk, in lib dir. You can skip this if you want arduino or some other firmware, but circuitpython is recommended initially, to test things, easily. For me, the whole circuitpython bundle was too big, so just copy [these recommended libs](CIRCUITPYTHON.md)
+- [install circuitpython](https://circuitpython.org/board/waveshare_rp2040_zero/) and any [libs](https://circuitpython.org/libraries) you need to "circuitpython" disk, in lib dir. You can skip this if you want arduino or some other firmware, but circuitpython is recommended initially, to test things, easily. For me, the whole circuitpython bundle was too big, so just copy [firmware](firmware). My code.py is meant to test each part initially (so youc an make sure hardware/software is setup right.)
+- move sequencer.py to code.py, and reboot, and you should have a complete device.
 
 ### expansion & hardware
 
@@ -78,20 +79,6 @@ You could get this even cheaper with greater bulk-quantities, and shopping aroun
 - drop OLED
 - drop rotary-encoders
 - try to get all parts on single-side (for cheaper/easier-to-make-at-home PCB)
-
-
-## software
-
-
-### MIDI sequencer/controller
-
-- copy [midimech1.py](firmware/midimech1.py) to `lib/midimech1.py`
-- copy [sequencer.py](firmware/sequencer.py) to `app.py`
-
-### standard keyboard
-
-- install [KMK](https://github.com/KMKfw/kmk_firmware)
-- copy [keyboard.py](firmware/keyboard.py) (feel free to modify) to `app.py`
 
 
 ## Modify
