@@ -67,7 +67,6 @@ rotb[1].pull=Pull.UP
 # setup keypad
 keys = KeyMatrix(row_pins=(ROW1,ROW2,ROW3,ROW4,ROW5), column_pins=(COL1,COL2,COL3,COL4))
 
-
 # wait & hide logo
 sleep(1)
 logo.hidden = True
@@ -75,6 +74,8 @@ logo.hidden = True
 # setup text-display
 t = label.Label(terminalio.FONT, text="", color=0xffffff, x=0, y=5)
 screen.append(t)
+
+###
 
 
 def demo_input():
@@ -174,4 +175,5 @@ class MenuDemos(Menu):
 currentMode = MenuDemos(t, rot[0], rotb[0])
 
 while True:
-  currentMode.show(keys.events.get())
+  keys.events.get()
+  currentMode.show()

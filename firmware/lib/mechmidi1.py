@@ -42,7 +42,7 @@ class Menu:
     self.doselect = True
     rot.position = 0
 
-  def show(self, e):
+  def show(self):
     position = self.rot.position % len(self.items)
     if not self.button.value and self.doselect:
       self.doselect = False
