@@ -1,6 +1,7 @@
 This is a [RP2040-Zero](https://www.waveshare.com/rp2040-zero.htm) mechanical keyboard I designed to be a MIDI controller/sequencer and/or macro-keypad. It's made to be highly configurable & easy to modify.
 
-I am using some ideas from [here](https://www.youtube.com/watch?v=8WXpGTIbxlQ), and it needs testing (still in progress.)
+> ![NOTE]
+> After assembling, I think the keys are a tiny bit too close together (spacing left/right should be doubled) and I think the RP2040 needs a board-cutout to make it lay flush. You can solder it as it is, but it makes it much harder, because it has a gap between the boards. It's pretty expensive to iterate (buying assembled boards in bulk) so I will probly not modify/test updates to the design, but if I were making more, I would space the keys out more and cut a square under the RP2040.
 
 ## Features
 
@@ -80,11 +81,9 @@ You could get this even cheaper with greater bulk-quantities, and shopping aroun
 - drop rotary-encoders
 - try to get all parts on single-side (for cheaper/easier-to-make-at-home PCB)
 
-
 ## Modify
 
 This thing is meant to be hacked!
-
 
 ### hardware
 
