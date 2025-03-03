@@ -1,6 +1,6 @@
 This is a [RP2040-Zero](https://www.waveshare.com/rp2040-zero.htm) mechanical keyboard I designed to be a MIDI controller/sequencer and/or macro-keypad. It's made to be highly configurable & easy to modify.
 
-> ![NOTE]
+> [!CAUTION]
 > After assembling, I think the keys are a tiny bit too close together (spacing left/right should be doubled) and I think the RP2040 needs a board-cutout to make it lay flush. You can solder it as it is, but it makes it much harder, because it has a gap between the boards. It's pretty expensive to iterate (buying assembled boards in bulk) so I will probly not modify/test updates to the design, but if I were making more, I would space the keys out more and cut a square under the RP2040.
 
 ## Features
