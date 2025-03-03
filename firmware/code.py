@@ -28,18 +28,16 @@ display.root_group = screen
 
 def logo_display():
   with open("logo.bmp", "rb") as logo_file:
-    logo_bmp = displayio.OnDiskBitmap(logo_file)
-    logo = displayio.TileGrid(
-        logo_bmp,
-        pixel_shader = getattr(logo_bmp, 'pixel_shader', displayio.ColorConverter()),
-        x=25
-    )
-    screen.append(logo)
-    display.refresh()
-    # wait & hide logo
-    sleep(1)
-    logo.hidden = True
-
+      logo_bmp = displayio.OnDiskBitmap(logo_file)
+      logo = displayio.TileGrid(
+          logo_bmp,
+          pixel_shader = getattr(logo_bmp, 'pixel_shader', displayio.ColorConverter()),
+          x=25
+      )
+      screen.append(logo)
+      display.refresh()
+      sleep(1)
+      logo.hidden = True
 logo_display()
 
 # setup RGB LEDs
@@ -108,10 +106,9 @@ def demo_rainbow(button):
   pixels.brightness = 0.2
   sleep(0.2)
 
-def demo_satan(button):
+def demo_twinkle(button, color):
   pixels.brightness = 1
-  t.text = "\n" + "Praise Satan!!!!".center(20)
-  p=SparklePulse(pixels, speed=0.1, breath=0.05, color=RED)
+  p=SparklePulse(pixels, speed=0.1, breath=0.05, color=color)
   while button.value:
     p.animate()
   pixels.fill(0)
@@ -143,7 +140,7 @@ def demo_cop(button):
 
 class MenuLED(Menu):
   def __init__(self, textArea, rot, button):
-    super(MenuLED, self).__init__("LED Demos", ["Rainbow", "Satan", "Pigs", "<- Back"], textArea, rot, button)
+    super(MenuLED, self).__init__("LED Demos", ["Rainbow", "Matrix", "Satan", "Pigs", "<- Back"], textArea, rot, button)
 
   def select(self, position):
     global currentMode
@@ -152,10 +149,14 @@ class MenuLED(Menu):
     if position == 0:
       demo_rainbow(self.button)
     if position == 1:
-      demo_satan(self.button)
+      self.t.text = "\n" + "Wake up, Neo.".center(20)
+      demo_twinkle(self.button, GREEN)
     if position == 2:
-      demo_cop(self.button)
+      self.t.text = "\n" + "All Praise Satan!!!!".center(20)
+      demo_twinkle(self.button, RED)
     if position == 3:
+      demo_cop(self.button)
+    if position == 4:
       currentMode = MenuDemos(self.t, self.rot, self.button)
     else:
       currentMode = MenuLED(self.t, self.rot, self.button)
