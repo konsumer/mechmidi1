@@ -26,8 +26,8 @@ display = adafruit_displayio_ssd1306.SSD1306(I2CDisplayBus(i2c, device_address=0
 screen = displayio.Group()
 display.root_group = screen
 
-# display logo
-with open("logo.bmp", "rb") as logo_file:
+def logo_display():
+  with open("logo.bmp", "rb") as logo_file:
     logo_bmp = displayio.OnDiskBitmap(logo_file)
     logo = displayio.TileGrid(
         logo_bmp,
@@ -36,6 +36,11 @@ with open("logo.bmp", "rb") as logo_file:
     )
     screen.append(logo)
     display.refresh()
+    # wait & hide logo
+    sleep(1)
+    logo.hidden = True
+
+logo_display()
 
 # setup RGB LEDs
 pixels = neopixel.NeoPixel(
@@ -66,10 +71,6 @@ rotb[1].pull=Pull.UP
 
 # setup keypad
 keys = KeyMatrix(row_pins=(ROW1,ROW2,ROW3,ROW4,ROW5), column_pins=(COL1,COL2,COL3,COL4))
-
-# wait & hide logo
-sleep(1)
-logo.hidden = True
 
 # setup text-display
 t = label.Label(terminalio.FONT, text="", color=0xffffff, x=0, y=5)
@@ -161,7 +162,7 @@ class MenuLED(Menu):
 
 class MenuDemos(Menu):
   def __init__(self, textArea, rot, button):
-    super(MenuDemos, self).__init__("Demos", ["LEDs", "Input"], textArea, rot, button)
+    super(MenuDemos, self).__init__("Demos", ["LEDs", "Input", "Logo"], textArea, rot, button)
 
   def select(self, position):
     global currentMode
@@ -171,6 +172,9 @@ class MenuDemos(Menu):
       currentMode = MenuLED(self.t, self.rot, self.button)
     if position == 1:
       demo_input()
+    if position == 2:
+      self.t.text = ""
+      logo_display()
 
 currentMode = MenuDemos(t, rot[0], rotb[0])
 
