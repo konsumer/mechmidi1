@@ -1,4 +1,5 @@
 import board
+from time import sleep
 
 # hardware-GPIO for mechmidi1
 
@@ -29,3 +30,32 @@ RX=board.RX
 SDA=board.GP2
 SCL=board.GP3
 
+# base-class for menu
+class Menu:
+  def __init__(self, title, items, textArea, rot, button):
+    self.title = title
+    self.items = items
+    self.t = textArea
+    self.rot = rot
+    self.button = button
+    self.lines=["","","",""]
+    self.doselect = True
+    rot.position = 0
+
+  def show(self, e):
+    position = self.rot.position % len(self.items)
+    if not self.button.value and self.doselect:
+      self.doselect = False
+      self.select(position)
+    i = [
+      ("- " + self.title + " -").center(20),
+      "  " + self.items[(position - 1) % len(self.items)],
+      "> " + self.items[(position) % len(self.items)],
+      "  " + self.items[(position + 1) % len(self.items)]
+    ]
+    self.t.text = "\n".join(i)
+
+  def select(self, position):
+    self.t.text = f"Chose {self.items[position]}"
+    sleep(1)
+    self.doselect = True

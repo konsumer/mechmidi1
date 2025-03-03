@@ -10,9 +10,13 @@ import terminalio
 from adafruit_display_text import label
 from i2cdisplaybus import I2CDisplayBus
 
+from adafruit_led_animation.color import RAINBOW, RED, YELLOW, ORANGE, GREEN, TEAL, CYAN, BLUE, PURPLE, MAGENTA, WHITE, BLACK, GOLD, PINK, AQUA, JADE, AMBER, OLD_LACE
+from adafruit_led_animation.animation.rainbowcomet import RainbowComet
+from adafruit_led_animation.animation.sparklepulse import SparklePulse
+
 import adafruit_displayio_ssd1306
 
-from mechmidi1 import ROT0S,ROT0A,ROT0B,ROT1S,ROT1A,ROT1B,SDA,SCL,LED,ROW1,ROW2,ROW3,ROW4,ROW5,COL1,COL2,COL3,COL4
+from mechmidi1 import Menu,ROT0S,ROT0A,ROT0B,ROT1S,ROT1A,ROT1B,SDA,SCL,LED,ROW1,ROW2,ROW3,ROW4,ROW5,COL1,COL2,COL3,COL4
 
 # setup i2c and OLED
 displayio.release_displays()
@@ -22,6 +26,7 @@ display = adafruit_displayio_ssd1306.SSD1306(I2CDisplayBus(i2c, device_address=0
 screen = displayio.Group()
 display.root_group = screen
 
+# display logo
 with open("logo.bmp", "rb") as logo_file:
     logo_bmp = displayio.OnDiskBitmap(logo_file)
     logo = displayio.TileGrid(
@@ -36,10 +41,12 @@ with open("logo.bmp", "rb") as logo_file:
 pixels = neopixel.NeoPixel(
     LED,
     20,
-    brightness=0.1,
+    brightness=0.2,
     auto_write=False,
     pixel_order=neopixel.GRB
 )
+pixels.fill(0)
+pixels.show()
 
 # setup rotary-encoders
 rot = [
@@ -60,12 +67,16 @@ rotb[1].pull=Pull.UP
 # setup keypad
 keys = KeyMatrix(row_pins=(ROW1,ROW2,ROW3,ROW4,ROW5), column_pins=(COL1,COL2,COL3,COL4))
 
+
+# wait & hide logo
 sleep(1)
 logo.hidden = True
 
-text_area = label.Label(terminalio.FONT, text="This is not\nfinished.", color=0xffffff, x=0, y=5)
-screen.append(text_area)
+# setup text-display
+t = label.Label(terminalio.FONT, text="", color=0xffffff, x=0, y=5)
+screen.append(t)
 
+
+t.text = "I am still\nworking\non this."
 while True:
-    pass
-
+  pass
