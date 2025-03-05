@@ -138,8 +138,9 @@ def demo_midi(t):
 def demo_piano(t):
   pixels.fill(BLACK)
   pixels.show()
-  inst = rot[0].position % 128
-  oldval = inst
+  rot[0].position = 0
+  inst = 0
+  oldval = 0
   t.text = f"({inst+1}) {saminfo.patches[inst]}\nPress keys to play\nPress both rotaries\nto exit\n"
   sam.send(ProgramChange(patch=inst), channel=0) # set proagram to rot position
   while True:
@@ -168,8 +169,9 @@ def demo_piano(t):
 def demo_drums(t):
   pixels.fill(BLACK)
   pixels.show()
-  inst = rot[0].position % 5
-  oldval = inst
+  rot[0].position = 0
+  inst = 0
+  oldval = 0
   t.text = f"{saminfo.drums[inst]}\nPress keys to play\nPress both rotaries\nto exit\n"
   sam.send(ProgramChange(patch=saminfo.drum_programs[inst]), channel=9) # set proagram to rot position
   while True:
