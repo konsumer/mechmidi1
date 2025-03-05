@@ -96,3 +96,8 @@ This thing is meant to be hacked!
 ### software
 
 If you want to change how the software works, I have created a [simple lib](firmware/midimech1.py) to interact with the existing hardware in [CircuitPython](https://circuitpython.org/). See how I use it in [sequencer.py](firmware/sequencer.py). If you chnage the hardware, you will probly need to also modify these.
+
+### TODO
+
+- I need to actually create the sequencers and stuff
+- [SAM](https://docs.dream.fr/pdf/Serie2000/SAM_Datasheets/SAM2695.pdf) chip can do a ton of stuff, demos should use effects and things
