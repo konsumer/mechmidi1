@@ -12,3 +12,6 @@ display.root_group = None
 # disable acting as HID device, enable USB MIDI
 usb_hid.disable()
 usb_midi.enable()
+
+# set the name, as it shows on host-OS
+supervisor.set_usb_identification("konsumer", "mechmidi")
