@@ -144,3 +144,26 @@ drum_programs = [
   48,
   127
 ]
+
+drum_names = [
+  "Kick drum2",
+  "Kick drum1",
+  "Side Stick",
+  "Snare Drum 1",
+  "Hand Clap",
+  "Snare Drum 2",
+  "Low Floor Tom",
+  "Closed Hi Hat",
+  "High Floor Tom",
+  "Pedal Hi-Hat",
+  "Low Tom",
+  "Open Hi-Hat",
+  "Low-Mid Tom",
+  "Hi Mid Tom ",
+  "Crash Cymbal",
+  "High Tom" 
+]
+
+
+
+
