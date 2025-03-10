@@ -1,7 +1,7 @@
 This is a [RP2040-Zero](https://www.waveshare.com/rp2040-zero.htm) mechanical keyboard I designed to be a MIDI controller/sequencer and/or macro-keypad. It's made to be highly configurable & easy to modify.
 
 > [!CAUTION]
-> After assembling, I think the keys are a tiny bit too close together (spacing left/right should be doubled) and I think the RP2040 needs a board-cutout to make it lay flush. You can solder it as it is, but it makes it much harder, because it has a gap between the boards. It's pretty expensive to iterate (buying assembled boards in bulk) so I will probly not modify/test updates to the design, but if I were making more, I would space the keys out more and cut a square under the RP2040.
+> After assembling, I think the keys are a tiny bit too close together (spacing left/right should be doubled) and I think the RP2040 needs a board-cutout to make it lay flush. You can solder it as it is, but it makes it much harder, because it has a gap between the boards. I am currently reworking the design in Kicad, and will attempt to test another iteration.
 
 ## Features
 
@@ -25,9 +25,9 @@ This is a [RP2040-Zero](https://www.waveshare.com/rp2040-zero.htm) mechanical ke
 
 - order PCB & parts. Feel free to use whatever cheaper parts you can find. It pays to look around, especially with the OLED and LED chips. The key-switches are also totally up to you, but I recommend something clear, so the light shines through better. You will also need keycaps (again, clear or matte white looks nice)
 - if you want to use easyeda & [jlcpcb](https://jlcpcb.com/) (it's very cheap & easy) you can disable any parts you don't need/want in BOM, and it will leave them out. For example, I didn't use the keys or 2040 they listed, I used my own (and it ended up better, I think.)
-- solder remaining components on board. [this](https://learn.sparkfun.com/tutorials/how-to-solder-castellated-mounting-holes/all) was helpful for the RP2040-Zero. Flux really helps, and a cheap USB microscope, if you have one. Basically, I fluxed it up, put a pointy tipped iron in slot, then added a lil solder, for each pin.
-- if you want classic MIDI, connect a board, like [this](https://www.amazon.com/ubld-itTM-Breakout-Board-Multi-Voltage/dp/B0BYMC926Z) to "expansion port" on board. I did this as a seperate board because I had a MIDI breakout-board laying around and I wanted it all to fit on a very small main-board. Another trick is sometimes the MIDI ports are included with other features on the board. For example [this](https://shop.m5stack.com/products/midi-unit-with-din-connector-sam2695) has MIDI DIN IN/OUT, as well as TRS MIDI ports, and has a full sound-engine built in (entire General Midi of 127 decent-sounding instruments.) Even if you don't want the sounds, the MIDI connections alone are useful, but with sounds, it makes the device even cooler!
-- [install circuitpython](https://circuitpython.org/board/waveshare_rp2040_zero/) and any [libs](https://circuitpython.org/libraries) you need to "circuitpython" disk, in lib dir. You can skip this if you want arduino or some other firmware, but circuitpython is recommended initially, to test things, easily. For me, the whole circuitpython bundle was too big, so just copy [firmware](firmware). My code.py is meant to test each part initially (so youc an make sure hardware/software is setup right.)
+- solder components on board. [this](https://learn.sparkfun.com/tutorials/how-to-solder-castellated-mounting-holes/all) was helpful for the RP2040-Zero. Flux really helps, and a cheap USB microscope, if you have one. Basically, I fluxed it up, put a pointy tipped iron in slot, then added a lil solder, for each pin. If you are soldering the other parts, it should be easier with a toaster/hotplate, since all the parts are on one side.
+- if you want classic MIDI, connect a board, like [this](https://www.amazon.com/ubld-itTM-Breakout-Board-Multi-Voltage/dp/B0BYMC926Z) to "expansion port" on board. I did this as a seperate board because I had a MIDI breakout-board laying around and I wanted it all to fit on a very small main-board. Another trick is sometimes the MIDI ports are included with other features on the board. For example [this](https://shop.m5stack.com/products/midi-unit-with-din-connector-sam2695) has MIDI DIN IN/OUT, as well as TRS MIDI ports, and has a full sound-engine built in (entire General Midi of 128 decent-sounding instruments.) Even if you don't want the sounds, the MIDI connections alone are useful, but with sounds, it makes the device even cooler!
+- [install circuitpython](https://circuitpython.org/board/waveshare_rp2040_zero/) and any [libs](https://circuitpython.org/libraries) you need to "circuitpython" disk, in lib dir. You can skip this if you want arduino or some other firmware, but circuitpython is recommended initially, to test things, easily. For me, the whole circuitpython bundle was too big, so just copy [firmware](firmware). My code.py is meant to test each part initially (so you can make sure hardware/software is setup right.) I also included a lib dir, so you shouldn;t need anything else, to get started.
 - move sequencer.py to code.py, and reboot, and you should have a complete device.
 
 ### expansion & hardware
@@ -90,14 +90,6 @@ This thing is meant to be hacked!
 - Install [EasyEDA](https://easyeda.com/)
 - move things in schematice however you want, or add/remove anyhting you like. Make sure to update PCB (alt-I.) The 2040 is maxed-out for GPIO, but the layout should be simple enough to modify (unroute all, then do your business with nets like `COL0`, `ROW0`, etc, then auto-route.) I recommend replacing the chip wityh somerthing bigger if you want to do ther stuff (see [picoadk](https://www.tindie.com/products/datanoisetv/picoadk-audio-development-kit-raspberry-rp2040/) for a nice 2040 firmware for larger pico, with sound-generatin in mind!)
 
-> [!NOTE]
-> I ended up recreating/improving project in EasyEDA because it was easier with [jlcpcb](https://jlcpcb.com/), which is pretty cheap for making the PCB and assembly. This means the [kicad stuff](kicad) is not totally up-to-date, but I left it, if anyone is interested. It should still work, but it's not tested, and it's layed-out a bit differently.
-
 ### software
 
-If you want to change how the software works, I have created a [simple lib](firmware/midimech1.py) to interact with the existing hardware in [CircuitPython](https://circuitpython.org/). See how I use it in [sequencer.py](firmware/sequencer.py). If you chnage the hardware, you will probly need to also modify these.
-
-### TODO
-
-- I need to actually create the sequencers and stuff
-- [SAM](https://docs.dream.fr/pdf/Serie2000/SAM_Datasheets/SAM2695.pdf) chip can do a ton of stuff, demos should use effects and things
+If you want to change how the software works, I have created a [simple lib](firmware/midimech1.py) to interact with the existing hardware in [CircuitPython](https://circuitpython.org/). See how I use it in [sequencer.py](firmware/sequencer.py). If you change the hardware, you will probly need to also modify these.
